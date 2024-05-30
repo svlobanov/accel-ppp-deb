@@ -3,11 +3,11 @@ Architecture: amd64
 Depends: libc6 (>= 2.35), libssl3 (>= 3.0.2), libpcre3 (>= 8.39), liblua5.1-0
 Priority: 0
 Section: net
-Filename: pool/nightly/a/accel-ppp/accel-ppp_1.12.0-291-gc69805f~Ubuntu22_amd64.deb
-Size: 478240
-SHA256: a758f75758d1e51af5b39fef8a48a5f07f6df8af3c6da5b53ada7424aaee1e89
-SHA1: fa9b339ff1884d01a581c42644acf39e14d49b93
-MD5sum: 8eb2deb91ec96d407c659840c73dc068
+Filename: pool/nightly/a/accel-ppp/accel-ppp_1.12.0-292-g4884df2~Ubuntu22_amd64.deb
+Size: 478234
+SHA256: 7b4eeef3f797c754d07b7b9f5b84bd0d5ccd388785c0063104a5ba4f572ada51
+SHA1: 44550ad72587592ba667e0258b16193cc3df9ae6
+MD5sum: 6b01cbe9a80736266cc8654fe6b81fdd
 Description: PPtP/L2TP/PPPoE/SSTP server for Linux
  Overview
  --------
@@ -191,6 +191,6 @@ Description: PPtP/L2TP/PPPoE/SSTP server for Linux
  ICQ: 337258064
  Jabber: dima@accel-ppp.org
 Maintainer: Dmitry Kozlov <xeb@mail.ru>
-Version: 1.12.0-291-gc69805f~Ubuntu22
+Version: 1.12.0-292-g4884df2~Ubuntu22
 Installed-Size: 1701
 
