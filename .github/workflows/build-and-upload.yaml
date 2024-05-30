@@ -14,10 +14,10 @@ jobs:
             "debian:10",
             "debian:11",
             "debian:12",
-            "debian:trixie",
+#            "debian:trixie",
             "ubuntu:20.04",
             "ubuntu:22.04",
-            "ubuntu:24.04",
+#            "ubuntu:24.04",
           ]
     runs-on: ubuntu-latest
     container:
@@ -136,5 +136,5 @@ jobs:
         run: >
           for codename in buster bullseye bookworm trixie focal jammy noble ; do
             echo Add packages for distro codename=${codename};
-            reprepro -V --section net --component nightly --priority 0 includedeb ${codename} incoming/*${codename}.deb;
+            reprepro -V --section net --component nightly --priority 0 includedeb ${codename} incoming/*_${codename}.deb;
           done
