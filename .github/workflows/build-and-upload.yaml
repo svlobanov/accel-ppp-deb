@@ -1,0 +1,129 @@
+name: Build and Run
+
+on:
+  workflow_dispatch:
+
+jobs:
+  Build-in-Container-Debian:
+    #if: ${{ false }} # disable for now
+    strategy:
+      fail-fast: true
+      matrix:
+        distro:
+          [
+            "debian:10",
+#            "debian:11",
+#            "debian:12",
+            "debian:trixie",
+#            "ubuntu:20.04",
+#            "ubuntu:22.04",
+            "ubuntu:24.04",
+          ]
+    runs-on: ubuntu-latest
+    container:
+      image: ${{ matrix.distro }}
+    steps:
+      - name: Set distro-specific vars
+        run: >
+          HEADERS_SUFFIX=`uname -m | sed s/aarch64/arm64/ | sed s/x86_64/amd64/`;
+          DISTRO=`echo ${{ matrix.distro }} |  sed 's/://'`;
+          case "${{ matrix.distro }}" in
+          debian:trixie) DISTRO=debian13; CPACK_TYPE=Debian13 ;;
+          debian:12) DISTRO=debian12; CPACK_TYPE=Debian12 ;;
+          debian:11) CPACK_TYPE=Debian11 ;;
+          debian:10) CPACK_TYPE=Debian10 ;;
+          ubuntu:24.04) CPACK_TYPE=Ubuntu24 ; HEADERS_SUFFIX=generic ;;
+          ubuntu:22.04) CPACK_TYPE=Ubuntu22 ; HEADERS_SUFFIX=generic ;;
+          ubuntu:20.04) CPACK_TYPE=Ubuntu20 ; HEADERS_SUFFIX=generic ;;
+          esac;
+          echo HEADERS_SUFFIX=$HEADERS_SUFFIX >> $GITHUB_ENV;
+          echo DISTRO=$DISTRO >> $GITHUB_ENV;
+          echo CPACK_TYPE=$CPACK_TYPE >> $GITHUB_ENV;
+          echo UNAME_M=`uname -m` >> $GITHUB_ENV;
+          echo NEEDRESTART_SUSPEND=1 >> $GITHUB_ENV;
+          echo DEBIAN_FRONTEND=noninteractive  >> $GITHUB_ENV;
+          echo DEBCONF_NONINTERACTIVE_SEEN=true >> $GITHUB_ENV;
+          cat $GITHUB_ENV
+      - name: Install build tools
+        run: >
+          apt update && apt -y upgrade && apt -y dist-upgrade &&
+          apt -y install git build-essential cmake gcc 
+          linux-headers-${{ env.HEADERS_SUFFIX }}
+          libpcre3-dev libssl-dev liblua5.1-0-dev kmod dkms debhelper devscripts
+      - name: Install additional build tools (using apt) (for some OS)
+        run: apt -y install dh-dkms || exit 0
+      - name: Get kernel name from headers
+        run: >
+          echo KERNEL_NAME=`ls -1 /usr/src/ | grep  'linux-headers.*${{ env.HEADERS_SUFFIX }}' | 
+          sed 's/linux-headers-//'` >> $GITHUB_ENV;
+          cat $GITHUB_ENV
+      - name: Check out repository code
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository_owner }}/accel-ppp
+          ref: dkms
+          fetch-depth: 0
+      - name: mkdir build
+        run: mkdir build
+      - name: Disable git security warnings
+        run: git config --global --add safe.directory '*'
+      - name: cmake
+        working-directory: ./build
+        run: >
+          cmake -DBUILD_IPOE_DRIVER=FALSE -DBUILD_VLAN_MON_DRIVER=FALSE -DCMAKE_INSTALL_PREFIX=/usr 
+          -DKDIR=/usr/src/linux-headers-${{ env.KERNEL_NAME }}
+          -DMODULES_KDIR=${{ env.KERNEL_NAME }}
+          -DLUA=TRUE -DSHAPER=TRUE -DRADIUS=TRUE 
+          -DCPACK_TYPE=${{ env.CPACK_TYPE }} ..
+      - name: make
+        working-directory: ./build
+        run: make
+      - name: Generate debian package (without drivers)
+        working-directory: ./build
+        run: cpack -G DEB
+      - name: Rename accel-ppp deb package
+        working-directory: ./build
+        run: >
+          mv -v accel-ppp.deb 
+          accel-ppp_${{ env.DISTRO }}.deb
+      - name: build dkms package for ipoe
+        working-directory: ./drivers/dkms/ipoe
+        run: |
+          cp -f ../../../build/version.h src/
+          debuild -us -uc -tc -b
+      - name: build dkms package for vlan_mon
+        working-directory: ./drivers/dkms/vlan_mon
+        run: |
+          cp -f ../../../build/version.h src/
+          debuild -us -uc -tc -b
+      - name: Upload accel-ppp .deb package as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: deb-accel-ppp-${{ env.DISTRO }}
+          path: build/accel-ppp_*.deb
+          if-no-files-found: error
+      - name: Upload driver .deb packages as artifact
+        if: ${{ false }} 
+        uses: actions/upload-artifact@v4
+        with:
+          name: deb-accel-ppp-drivers-dkms-${{ env.DISTRO }}
+          path: drivers/dkms/accel-ppp*.deb
+          if-no-files-found: error
+
+  Upload-to-Repo:
+    needs: Build-in-Container-Debian
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+  
+      - name: Download all built packages
+        uses: actions/download-artifact@v4
+        with:
+          path: incoming
+          merge-multiple: true
+
+      - name: List built packages
+        run: ls -la incoming
