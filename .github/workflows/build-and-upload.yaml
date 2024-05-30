@@ -121,10 +121,15 @@ jobs:
       - name: Install reprepro
         run: sudo apt update && sudo apt -y install reprepro
 
+      - name: Import GPG key for signing debian packages
+        run: echo $GPG_KEY | base64 --decode | gpg --batch --import
+        env:
+          GPG_KEY: ${{ secrets.DEB_PKG_GPG_KEY }}
+
       - name: Check out repository code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 1
 
       - name: Download all built packages
         uses: actions/download-artifact@v4
