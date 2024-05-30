@@ -1,0 +1,28 @@
+Origin: accel-ppp
+Label: accel-ppp
+Codename: bookworm
+Date: Thu, 30 May 2024 22:44:04 UTC
+Architectures: amd64
+Components: main nightly
+Description: Apt repository for accel-ppp
+MD5Sum:
+ d41d8cd98f00b204e9800998ecf8427e 0 main/binary-amd64/Packages
+ 7029066c27ac6f5ef18d660d5741979a 20 main/binary-amd64/Packages.gz
+ 13fd4ee4ad5f877f36399c7533782667 113 main/binary-amd64/Release
+ 88fe40cdfb7f27404da1653ad82c3ff3 9184 nightly/binary-amd64/Packages
+ 8537f2d894811e355b5d0fed8f5d4d04 3665 nightly/binary-amd64/Packages.gz
+ 2a844ac558310f687f6918c9942ccd76 116 nightly/binary-amd64/Release
+SHA1:
+ da39a3ee5e6b4b0d3255bfef95601890afd80709 0 main/binary-amd64/Packages
+ 46c6643f07aa7f6bfe7118de926b86defc5087c4 20 main/binary-amd64/Packages.gz
+ 19c00a946a80bb3ce6385aa51b7f2ba981ba0e48 113 main/binary-amd64/Release
+ 29bbd4012a34654e632b2f02bf15909f80af4598 9184 nightly/binary-amd64/Packages
+ 1c9e4bb80b0e6b2a3b7728cd1593bc4803ceaf18 3665 nightly/binary-amd64/Packages.gz
+ dbed05e7598094d870544d32468a74c216b3e86f 116 nightly/binary-amd64/Release
+SHA256:
+ e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 0 main/binary-amd64/Packages
+ 59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2 20 main/binary-amd64/Packages.gz
+ 15954fc1a2afaaaa502e5c1a1e39e215fe974ec0e140cc4fbd5f75173b931d25 113 main/binary-amd64/Release
+ 4da0e173bd417b121e0d6c3e7eeec76e52f84cd3dff4908706413bb3e9d3df0a 9184 nightly/binary-amd64/Packages
+ 7c08e61c9410dfb8634adb5e6a506a2b924240c3c196b112dca329b2a7e25fe5 3665 nightly/binary-amd64/Packages.gz
+ f8e931fba41a2f8b4de0b934911d4702f5c0ebe7609bd263a3e7831a5ded2ed7 116 nightly/binary-amd64/Release

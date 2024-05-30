@@ -1,0 +1,15 @@
+Package: accel-ppp
+Architecture: amd64
+Depends: libc6 (>= 2.28), libssl1.1 (>= 1.1.1c), libpcre3 (>= 8.39), liblua5.1-0
+Priority: 0
+Section: net
+Filename: pool/nightly/a/accel-ppp/accel-ppp_1.12.0-291-gc69805f~Debian10_amd64.deb
+Size: 465778
+SHA256: e048acc7393ea4135d16a09ac746964fed924b3e05b96237df36bf43c5302fde
+SHA1: 3a76afe206b21bbe492193468d6cff589e1e7cdb
+MD5sum: ed837d24fd8fbc03a9b37cb5e82b88cc
+Description: PPtP/L2TP/PPPoE/SSTP server for Linux
+Maintainer: Dmitry Kozlov <xeb@mail.ru>
+Version: 1.12.0-291-gc69805f~Debian10
+Installed-Size: 1630
+

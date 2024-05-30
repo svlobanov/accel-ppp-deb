@@ -1,0 +1,28 @@
+Origin: accel-ppp
+Label: accel-ppp
+Codename: bullseye
+Date: Thu, 30 May 2024 22:44:04 UTC
+Architectures: amd64
+Components: main nightly
+Description: Apt repository for accel-ppp
+MD5Sum:
+ d41d8cd98f00b204e9800998ecf8427e 0 main/binary-amd64/Packages
+ 7029066c27ac6f5ef18d660d5741979a 20 main/binary-amd64/Packages.gz
+ 13fd4ee4ad5f877f36399c7533782667 113 main/binary-amd64/Release
+ 7b275c134ba3b1ebef1462657e7b0399 9187 nightly/binary-amd64/Packages
+ 87eec6af743e6e7ab75caf9b9e4d9ee7 3668 nightly/binary-amd64/Packages.gz
+ 2a844ac558310f687f6918c9942ccd76 116 nightly/binary-amd64/Release
+SHA1:
+ da39a3ee5e6b4b0d3255bfef95601890afd80709 0 main/binary-amd64/Packages
+ 46c6643f07aa7f6bfe7118de926b86defc5087c4 20 main/binary-amd64/Packages.gz
+ 19c00a946a80bb3ce6385aa51b7f2ba981ba0e48 113 main/binary-amd64/Release
+ ef4ba24f4f34ef6787fc9aaf57058c30efce70a1 9187 nightly/binary-amd64/Packages
+ 276026b9d35bf6c2b8da5c526174d553e36a74d1 3668 nightly/binary-amd64/Packages.gz
+ dbed05e7598094d870544d32468a74c216b3e86f 116 nightly/binary-amd64/Release
+SHA256:
+ e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 0 main/binary-amd64/Packages
+ 59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2 20 main/binary-amd64/Packages.gz
+ 15954fc1a2afaaaa502e5c1a1e39e215fe974ec0e140cc4fbd5f75173b931d25 113 main/binary-amd64/Release
+ f1292e8e25f18d9112ce78591ccb4ead86f8105354db8a743d5eb41d58864f84 9187 nightly/binary-amd64/Packages
+ 8dad13d6720aad0a1d7b3f388531951251673e56a2a860791a4cc914fd2f05dc 3668 nightly/binary-amd64/Packages.gz
+ f8e931fba41a2f8b4de0b934911d4702f5c0ebe7609bd263a3e7831a5ded2ed7 116 nightly/binary-amd64/Release
