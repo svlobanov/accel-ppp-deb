@@ -12,11 +12,11 @@ jobs:
         distro:
           [
             "debian:10",
-#            "debian:11",
-#            "debian:12",
+            "debian:11",
+            "debian:12",
             "debian:trixie",
-#            "ubuntu:20.04",
-#            "ubuntu:22.04",
+            "ubuntu:20.04",
+            "ubuntu:22.04",
             "ubuntu:24.04",
           ]
     runs-on: ubuntu-latest
@@ -28,16 +28,17 @@ jobs:
           HEADERS_SUFFIX=`uname -m | sed s/aarch64/arm64/ | sed s/x86_64/amd64/`;
           DISTRO=`echo ${{ matrix.distro }} |  sed 's/://'`;
           case "${{ matrix.distro }}" in
-          debian:trixie) DISTRO=debian13; CPACK_TYPE=Debian13 ;;
-          debian:12) DISTRO=debian12; CPACK_TYPE=Debian12 ;;
-          debian:11) CPACK_TYPE=Debian11 ;;
-          debian:10) CPACK_TYPE=Debian10 ;;
-          ubuntu:24.04) CPACK_TYPE=Ubuntu24 ; HEADERS_SUFFIX=generic ;;
-          ubuntu:22.04) CPACK_TYPE=Ubuntu22 ; HEADERS_SUFFIX=generic ;;
-          ubuntu:20.04) CPACK_TYPE=Ubuntu20 ; HEADERS_SUFFIX=generic ;;
+          debian:trixie) DISTRO=debian13; CPACK_TYPE=Debian13; CODENAME=trixie ;;
+          debian:12) DISTRO=debian12; CPACK_TYPE=Debian12; CODENAME=bookworm ;;
+          debian:11) CPACK_TYPE=Debian11; CODENAME=bullseye ;;
+          debian:10) CPACK_TYPE=Debian10; CODENAME=buster ;;
+          ubuntu:24.04) CPACK_TYPE=Ubuntu24; CODENAME=noble ; HEADERS_SUFFIX=generic ;;
+          ubuntu:22.04) CPACK_TYPE=Ubuntu22; CODENAME=jammy ; HEADERS_SUFFIX=generic ;;
+          ubuntu:20.04) CPACK_TYPE=Ubuntu20; CODENAME=focal ; HEADERS_SUFFIX=generic ;;
           esac;
           echo HEADERS_SUFFIX=$HEADERS_SUFFIX >> $GITHUB_ENV;
           echo DISTRO=$DISTRO >> $GITHUB_ENV;
+          echo CODENAME=$CODENAME >> $GITHUB_ENV;
           echo CPACK_TYPE=$CPACK_TYPE >> $GITHUB_ENV;
           echo UNAME_M=`uname -m` >> $GITHUB_ENV;
           echo NEEDRESTART_SUSPEND=1 >> $GITHUB_ENV;
@@ -99,14 +100,14 @@ jobs:
       - name: Upload accel-ppp .deb package as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: deb-accel-ppp-${{ env.DISTRO }}
+          name: deb-accel-ppp-${{ env.CODENAME }}
           path: build/accel-ppp_*.deb
           if-no-files-found: error
       - name: Upload driver .deb packages as artifact
-        if: ${{ false }} 
+        if: ${{ false }}
         uses: actions/upload-artifact@v4
         with:
-          name: deb-accel-ppp-drivers-dkms-${{ env.DISTRO }}
+          name: deb-accel-ppp-drivers-dkms-${{ env.CODENAME }}
           path: drivers/dkms/accel-ppp*.deb
           if-no-files-found: error
 
@@ -114,11 +115,14 @@ jobs:
     needs: Build-in-Container-Debian
     runs-on: ubuntu-latest
     steps:
+      - name: install reprepro
+        run: sudo apt update && sudo apt -y install reprepro
+
       - name: Check out repository code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-  
+
       - name: Download all built packages
         uses: actions/download-artifact@v4
         with:
@@ -127,3 +131,10 @@ jobs:
 
       - name: List built packages
         run: ls -la incoming
+
+      - name: Add packages to repository
+        run: >
+          for codename in buster bullseye bookworm trixie focal jammy noble; do
+            echo Add packages for distro codename=${codename};
+            reprepro -V --section net --component nightly --priority 0 includedeb ${codename} incoming/*${distro}.deb;
+          done
