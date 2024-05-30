@@ -62,7 +62,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: ${{ github.repository_owner }}/accel-ppp
-          ref: dkms
+          ref: dkms2
           fetch-depth: 0
       - name: mkdir build
         run: mkdir build
