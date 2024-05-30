@@ -1,4 +1,4 @@
-name: Build and Run
+name: Build and Upload
 
 on:
   workflow_dispatch:
@@ -86,7 +86,7 @@ jobs:
         working-directory: ./build
         run: >
           mv -v accel-ppp.deb 
-          accel-ppp_${{ env.DISTRO }}.deb
+          accel-ppp_${{ env.CODENAME }}.deb
       - name: build dkms package for ipoe
         working-directory: ./drivers/dkms/ipoe
         run: |
@@ -115,7 +115,7 @@ jobs:
     needs: Build-in-Container-Debian
     runs-on: ubuntu-latest
     steps:
-      - name: install reprepro
+      - name: Install reprepro
         run: sudo apt update && sudo apt -y install reprepro
 
       - name: Check out repository code
@@ -134,7 +134,7 @@ jobs:
 
       - name: Add packages to repository
         run: >
-          for codename in buster bullseye bookworm trixie focal jammy noble; do
+          for codename in buster bullseye bookworm trixie focal jammy noble ; do
             echo Add packages for distro codename=${codename};
-            reprepro -V --section net --component nightly --priority 0 includedeb ${codename} incoming/*${distro}.deb;
+            reprepro -V --section net --component nightly --priority 0 includedeb ${codename} incoming/*${codename}.deb;
           done
