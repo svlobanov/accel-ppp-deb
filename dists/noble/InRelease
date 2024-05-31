@@ -1,3 +1,6 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
 Origin: accel-ppp
 Label: accel-ppp
 Codename: noble
@@ -26,3 +29,19 @@ SHA256:
  52d007baac9db0586bed65ac0965fb408cd89de0b9b5323b6b158e6efdb4b796 9184 nightly/binary-amd64/Packages
  0a8696deb904d4e2426f9152ce1610a6aa2d03c7d4105120097d33f8100ccc7b 3670 nightly/binary-amd64/Packages.gz
  f8e931fba41a2f8b4de0b934911d4702f5c0ebe7609bd263a3e7831a5ded2ed7 116 nightly/binary-amd64/Release
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEE294qCOjOvfiOyiJzJVRSA4NwzrMFAmZZF9UACgkQJVRSA4Nw
+zrNvNg/9FXY4sHI+GnkxVRBPRXMIvXPo8SllW9ttJirYH6s1LmdgdTAJZ492ihw3
+xr3b1ef6grvvOOF74L0i+tdFuF8CyZKvwoEfTjZu/g23tcBb8EzbUwwPcMbTs7C/
++dEqKygHEl9NSdzd29IJkcYb3M+uhEEm8npm+fpX7SE5EdsW1SNRMiUPIXAQrqkS
+g04+EQtvLgAqaEYDN0RF0m4DSJKpYPB9/9O3Zjx933oV7MUx1Ri/xbKuv9c6TaKd
+wQnaY03QKPLYMKZl2gU/fD3vfLiRGyoR8Vx2KZ4g0mdVEgb/y7MtGJXYh7s9fZyT
+n/MhV6Ldvj6KYAzIs0TXuIjfX0NsRgKNcSPYULWFuNFqJgX/NvS6OFEOMACRPun8
+Nv/UNCGmzmYqpDqOF4gqIlutu4tFfPn0WLdxoIyC1C05NG4VXUoClfCS7r+B5wHw
+lQPjjWbMNb0+77jit7b5pWM/xBydOyKUB+x9S6AxA5E38+uzUC+hEEu3JZMS8yR/
+haR5jwIzC0nwKHcpehSzDN9ali8diBdFOeUF3rQNdCI66qeQNwSkH/xqJ/V2muxY
+ElcN9A/zxKacxw/Tu5rbAceomC/pddUez+boOkKWMEIysPw0ezlZGhQEl5WLTfuH
+mL8PKIqYSKD0h/muNOEU+xsRqusHWj9dc8PLl++1BjSWTB13pAc=
+=bn5S
+-----END PGP SIGNATURE-----

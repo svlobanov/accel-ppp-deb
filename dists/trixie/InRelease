@@ -1,3 +1,6 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
 Origin: accel-ppp
 Label: accel-ppp
 Codename: trixie
@@ -26,3 +29,19 @@ SHA256:
  e466873d09f21acc463d6fbd0ab212c4af5ad5c8b6b312be2363a4ac7c3794fc 9184 nightly/binary-amd64/Packages
  c35848b54af3bfff42f06b8e502ea28fe9690f9159ea4a2c7ace9e1aa17fc401 3667 nightly/binary-amd64/Packages.gz
  f8e931fba41a2f8b4de0b934911d4702f5c0ebe7609bd263a3e7831a5ded2ed7 116 nightly/binary-amd64/Release
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEE294qCOjOvfiOyiJzJVRSA4NwzrMFAmZZF9QACgkQJVRSA4Nw
+zrNNDxAApF5xm1cAu+o8IylyGsHWShZInXALdozDZKH+82GhKB/vfIDj/giXBYzC
+33VAQKgNbJyc74IqJ2QayplqFz5kWMEhxdnRuMw99pdFXudEF8RJvFPE76nNx2sc
+qGqMuBgZDywxnetUrySZypMNcDI25EYm6LkuZ9M8Q+2K4xlff6cjejhQ3Qnzcazr
++xq7dTDSJ5KNoPZHpSOv5bZsf24meg+lTdRw9gU6rVJhwQUoFPXC/wI3wN5IUiSr
+n7nmZvf1x4KhhKIJBqd+rFqkff0dhqLB5BFDvVUCLUreHuQHrjbYqB1Gr11h7rwl
+gG0IOCCDCXWxM/Vepww4vBTMgfq4LaNLSFT1xpU5Q+oS+D8OEDBEISiZxdkb5R2X
+IEbPUf9/MllZQrYHHoZCLgOLk0e0ib/VEiRKQTDX0LW9f/nbgzU9MZmNUimZnAGi
+tUHqcuiO97ZbDABhTBEq57RNMdqUX0dVpqoZwvCDAZVoCYVZyxKP1lyjpbAwM7Sk
+AJ2LNHFI1MtwXGrsE2SFp8w+z9ukUuZuOXdTW9m+EnOXIoemjKoIK9byYYrLW4iR
+xjO1DXX0QSA3qSUIpnK0+hbAoCErRUOrpR78Jyy4WitkuzXSOWIHMkm4qAbI5qP4
+e1rA6baT6pYsIGgisrU6hKok7MzvnkZ7YLYuUFJXraqKXzjwRBM=
+=+vKK
+-----END PGP SIGNATURE-----
