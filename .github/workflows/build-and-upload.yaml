@@ -180,7 +180,8 @@ jobs:
         run: >
           for codename in buster bullseye bookworm trixie focal jammy noble ; do
             echo Add packages for distro codename=${codename};
-            reprepro -V --section net --component nightly --priority 0 includedeb ${codename} incoming/deb-accel-ppp-${codename}/*.deb;
+            reprepro -V --section net --component nightly --priority 0 includedeb ${codename} incoming/deb-accel-ppp-${codename}/*/*.deb;
+            reprepro -V --section net --component nightly --priority 0 includedeb ${codename} incoming/deb-accel-ppp-${codename}/*/*/*.deb;
           done
 
       - name: Save accel-ppp commit hash (nightly)
