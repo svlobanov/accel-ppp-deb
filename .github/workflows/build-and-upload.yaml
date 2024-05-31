@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       accel_commit: ${{ steps.accel_commit.outputs.accel_commit }}
-      accel_version: ${{ steps.accel_commit.outputs.accel_version }}
+      accel_version: ${{ steps.accel_version.outputs.accel_version }}
       ipoe_pkg_version: ${{ steps.ipoe_pkg_version.outputs.ipoe_pkg_version }}
       vlan_mon_pkg_version: ${{ steps.vlan_mon_pkg_version.outputs.vlan_mon_pkg_version }}
 
