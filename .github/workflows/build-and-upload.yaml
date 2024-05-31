@@ -174,7 +174,7 @@ jobs:
           merge-multiple: false
 
       - name: List built packages
-        run: ls -la incoming
+        run: ls -laR incoming
 
       - name: Add packages to repository
         run: >
