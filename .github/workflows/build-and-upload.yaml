@@ -16,7 +16,6 @@ jobs:
       vlan_mon_pkg_version: ${{ steps.vlan_mon_pkg_version.outputs.vlan_mon_pkg_version }}
       disable_pkg: ${{ steps.disable_pkg.outputs.disable_pkg }}
 
-
     steps:
       - name: Check out accel-ppp repository code
         uses: actions/checkout@v4
@@ -51,8 +50,6 @@ jobs:
         if: ${{ steps.accel_commit.outputs.accel_commit == env.LAST_PROCESSED_ACCEL_COMMIT }}
         name: Disable next jobs if no new commits (no new commits)
         run: echo disable_pkg=true >> "$GITHUB_OUTPUT"
-
-
 
   Build-in-Container-Debian:
     needs: Get-Check-Versions
@@ -141,13 +138,21 @@ jobs:
       - name: build dkms package for ipoe
         working-directory: ./drivers/dkms/ipoe
         run: |
+          sed -i "s/#MODULE_VERSION/$IPOE_PKG_VERSION~$CPACK_TYPE/" accel-ppp-ipoe-dkms.dkms
+          cat accel-ppp-ipoe-dkms.dkms
           cp -f ../../../build/version.h src/
           debuild -us -uc -tc -b
+        env:
+          IPOE_PKG_VERSION: ${{needs.Get-Check-Versions.outputs.ipoe_pkg_version}}
       - name: build dkms package for vlan_mon
         working-directory: ./drivers/dkms/vlan_mon
         run: |
+          sed -i "s/#MODULE_VERSION/$VLAN_MON_PKG_VERSION~$CPACK_TYPE/" accel-ppp-vlan-mon-dkms.dkms
+          cat accel-ppp-vlan-mon-dkms.dkms
           cp -f ../../../build/version.h src/
           debuild -us -uc -tc -b
+        env:
+          VLAN_MON_PKG_VERSION: ${{needs.Get-Check-Versions.outputs.vlan_mon_pkg_version}}
       - name: Upload accel-ppp .deb package as artifact
         uses: actions/upload-artifact@v4
         with:
@@ -195,7 +200,7 @@ jobs:
             echo Add packages for distro codename=${codename};
             reprepro -V --section net --component nightly --priority 0 includedeb ${codename} incoming/*_${codename}.deb;
           done
-      
+
       - name: Save accel-ppp commit hash (nightly)
         run: echo $ACCEL_COMMIT > state/commit_sha_nightly
         env:
