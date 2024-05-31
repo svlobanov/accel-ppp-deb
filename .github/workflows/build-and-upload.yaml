@@ -138,7 +138,7 @@ jobs:
       - name: build dkms package for ipoe
         working-directory: ./drivers/dkms/ipoe
         run: |
-          sed -i "s/#MODULE_VERSION/$IPOE_PKG_VERSION~$CPACK_TYPE/" accel-ppp-ipoe-dkms.dkms
+          sed -i "s/#MODULE_VERSION/$IPOE_PKG_VERSION~$CPACK_TYPE/" debian/accel-ppp-ipoe-dkms.dkms
           cat accel-ppp-ipoe-dkms.dkms
           cp -f ../../../build/version.h src/
           debuild -us -uc -tc -b
@@ -147,7 +147,7 @@ jobs:
       - name: build dkms package for vlan_mon
         working-directory: ./drivers/dkms/vlan_mon
         run: |
-          sed -i "s/#MODULE_VERSION/$VLAN_MON_PKG_VERSION~$CPACK_TYPE/" accel-ppp-vlan-mon-dkms.dkms
+          sed -i "s/#MODULE_VERSION/$VLAN_MON_PKG_VERSION~$CPACK_TYPE/" debian/accel-ppp-vlan-mon-dkms.dkms
           cat accel-ppp-vlan-mon-dkms.dkms
           cp -f ../../../build/version.h src/
           debuild -us -uc -tc -b
