@@ -47,9 +47,9 @@ jobs:
           fetch-depth: 1
       - name: Get last commit pushed to repository (nightly build)
         run: echo LAST_PROCESSED_ACCEL_COMMIT=`cat state/commit_sha_nightly` >> $GITHUB_ENV;
-      - id: disable_pkg (no new commits)
+      - id: disable_pkg
         if: ${{ steps.accel_commit.outputs.accel_commit == env.LAST_PROCESSED_ACCEL_COMMIT }}
-        name: Disable next jobs if no new commits
+        name: Disable next jobs if no new commits (no new commits)
         run: echo disable_pkg=true >> "$GITHUB_OUTPUT"
 
 
