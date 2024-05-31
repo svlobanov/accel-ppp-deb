@@ -28,15 +28,15 @@ jobs:
         run: echo accel_version=`git describe --tags` >> "$GITHUB_OUTPUT"
       - id: ipoe_pkg_version
         run: >
-          echo ipoe_pkg_version=
-            `git describe --tags --abbrev=0`-
-            `git rev-list $(git describe --tags --abbrev=0)..HEAD --count drivers/ipoe`-
+          echo ipoe_pkg_version=\
+            `git describe --tags --abbrev=0`-\
+            `git rev-list $(git describe --tags --abbrev=0)..HEAD --count drivers/ipoe`-\
             g`git rev-parse --short HEAD ` >> "$GITHUB_OUTPUT"
       - id: vlan_mon_pkg_version
         run: >
-          echo vlan_mon_pkg_version=
-            `git describe --tags --abbrev=0`-
-            `git rev-list $(git describe --tags --abbrev=0)..HEAD --count drivers/vlan_mon`-
+          echo vlan_mon_pkg_version=\
+            `git describe --tags --abbrev=0`-\
+            `git rev-list $(git describe --tags --abbrev=0)..HEAD --count drivers/vlan_mon`-\
             g`git rev-parse --short HEAD ` >> "$GITHUB_OUTPUT"
 
   Build-in-Container-Debian:
