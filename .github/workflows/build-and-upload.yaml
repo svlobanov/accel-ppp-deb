@@ -123,11 +123,6 @@ jobs:
       - name: Generate debian package (without drivers)
         working-directory: ./build
         run: cpack -G DEB
-      - name: Rename accel-ppp deb package
-        working-directory: ./build
-        run: >
-          mv -v accel-ppp.deb 
-          accel-ppp_${{ env.CODENAME }}.deb
       - name: build dkms package for ipoe
         working-directory: ./drivers/dkms/ipoe
         run: |
@@ -144,18 +139,15 @@ jobs:
           debuild -us -uc -tc -b
         env:
           VLAN_MON_PKG_VERSION: ${{needs.Get-Check-Versions.outputs.vlan_mon_pkg_version}}
-      - name: Upload accel-ppp .deb package as artifact
+      - name: Upload accel-ppp and drivers .deb packages as artifact
         uses: actions/upload-artifact@v4
         with:
           name: deb-accel-ppp-${{ env.CODENAME }}
-          path: build/accel-ppp_*.deb
+          path: |
+            build/*.deb
+            drivers/dkms/*.deb
           if-no-files-found: error
-      - name: Upload driver .deb packages as artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: deb-accel-ppp-drivers-dkms-${{ env.CODENAME }}
-          path: drivers/dkms/accel-ppp*.deb
-          if-no-files-found: error
+
 
   Upload-to-Repo:
     needs: [Build-in-Container-Debian, Get-Check-Versions]
@@ -179,7 +171,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           path: incoming
-          merge-multiple: true
+          merge-multiple: false
 
       - name: List built packages
         run: ls -la incoming
@@ -188,7 +180,7 @@ jobs:
         run: >
           for codename in buster bullseye bookworm trixie focal jammy noble ; do
             echo Add packages for distro codename=${codename};
-            reprepro -V --section net --component nightly --priority 0 includedeb ${codename} incoming/*_${codename}.deb;
+            reprepro -V --section net --component nightly --priority 0 includedeb ${codename} incoming/deb-accel-ppp-${codename}/*.deb;
           done
 
       - name: Save accel-ppp commit hash (nightly)
