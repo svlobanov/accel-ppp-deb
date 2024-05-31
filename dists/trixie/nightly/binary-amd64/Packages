@@ -3,11 +3,11 @@ Architecture: amd64
 Depends: libc6 (>= 2.37), libssl3 (>= 3.0.9), libpcre3 (>= 8.39), liblua5.1-0
 Priority: 0
 Section: net
-Filename: pool/nightly/a/accel-ppp/accel-ppp_1.12.0-297-g8fe2ae8~Debian13_amd64.deb
-Size: 464374
-SHA256: 7c47da5171103fb329eabfd74d204bc971a1ccb9e19c6c63011bf88e353e5dd5
-SHA1: 4f078688d58febbd6ed391e8cfaf3cd0db5acc5a
-MD5sum: 1359c76069b258bc0f12ce54e8ae40cc
+Filename: pool/nightly/a/accel-ppp/accel-ppp_1.12.0-298-ga73d29d~Debian13_amd64.deb
+Size: 464354
+SHA256: 0f2d6751183a631b804ace1985e72a0255961485908e8fb6490cc0e46f648d7a
+SHA1: 76f4e6b92887db0460a0dae43790a00102b48b7d
+MD5sum: df502993bb68123a47ac321d0fbf0e1a
 Description: PPtP/L2TP/PPPoE/SSTP server for Linux
  Overview
  --------
@@ -191,11 +191,11 @@ Description: PPtP/L2TP/PPPoE/SSTP server for Linux
  ICQ: 337258064
  Jabber: dima@accel-ppp.org
 Maintainer: Dmitry Kozlov <xeb@mail.ru>
-Version: 1.12.0-297-g8fe2ae8~Debian13
+Version: 1.12.0-298-ga73d29d~Debian13
 Installed-Size: 1620
 
 Package: accel-ppp-ipoe-dkms
-Version: 1.12.0-9-g8fe2ae8~Debian13
+Version: 1.12.0-9-ga73d29d~Debian13
 Architecture: all
 Maintainer: Dmitry Kozlov <xeb@mail.ru>
 Installed-Size: 61
@@ -203,15 +203,15 @@ Depends: dkms (>= 2.1.0.0), linux-headers-686-pae | linux-headers-amd64 | linux-
 Homepage: https://www.accel-ppp.io/
 Priority: 0
 Section: net
-Filename: pool/nightly/a/accel-ppp-ipoe-dkms/accel-ppp-ipoe-dkms_1.12.0-9-g8fe2ae8~Debian13_all.deb
-Size: 11788
-SHA256: 3dc7481dc8200f86edb4c7a1d91a299153b32206c5845ad2da352c6cdf1d3b4e
-SHA1: 5cddb2bdaae08a192097805d414ed6bd155c76a5
-MD5sum: 1bce8055bc78c4e88a6d9cd629f775bb
+Filename: pool/nightly/a/accel-ppp-ipoe-dkms/accel-ppp-ipoe-dkms_1.12.0-9-ga73d29d~Debian13_all.deb
+Size: 11824
+SHA256: fa752e656a2f30a831524047cea24132f00306602ee1274a06efa47f78986377
+SHA1: e0117f2598e0557ee6df3a77328bd0b235722dbd
+MD5sum: bdf81c789069c39a7d531deb0ea36176
 Description: DKMS source for the accel-ppp-ipoe driver
 
 Package: accel-ppp-vlan-mon-dkms
-Version: 1.12.0-5-g8fe2ae8~Debian13
+Version: 1.12.0-5-ga73d29d~Debian13
 Architecture: all
 Maintainer: Dmitry Kozlov <xeb@mail.ru>
 Installed-Size: 36
@@ -219,10 +219,10 @@ Depends: dkms (>= 2.1.0.0), linux-headers-686-pae | linux-headers-amd64 | linux-
 Homepage: https://www.accel-ppp.io/
 Priority: 0
 Section: net
-Filename: pool/nightly/a/accel-ppp-vlan-mon-dkms/accel-ppp-vlan-mon-dkms_1.12.0-5-g8fe2ae8~Debian13_all.deb
-Size: 6772
-SHA256: 4499d946f5c6740d74f98872bddbb51a13b3cb1830971d11555f9e1a69f1663a
-SHA1: 5655257b40f8ed7f349df0e8f182cedd502f268e
-MD5sum: c085f7466d43cda617f5606b76989650
+Filename: pool/nightly/a/accel-ppp-vlan-mon-dkms/accel-ppp-vlan-mon-dkms_1.12.0-5-ga73d29d~Debian13_all.deb
+Size: 6776
+SHA256: 6ff0022799091b659405c9714935b4c561bef8bc6f9dd8b8f7a7ff6f32a30934
+SHA1: 6890854c563401afbf4d681eede941db2f889657
+MD5sum: 1bcb47524196e06d6b53624c323cb6ca
 Description: DKMS source for the accel-ppp-vlan-mon driver
 

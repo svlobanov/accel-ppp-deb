@@ -3,11 +3,11 @@ Architecture: amd64
 Depends: libc6 (>= 2.35), libssl3 (>= 3.0.2), libpcre3 (>= 8.39), liblua5.1-0
 Priority: 0
 Section: net
-Filename: pool/nightly/a/accel-ppp/accel-ppp_1.12.0-297-g8fe2ae8~Ubuntu24_amd64.deb
-Size: 478864
-SHA256: 36a7176272781937cae56ad22fa3b3b0db629bb823a6b91f2e069336463c207c
-SHA1: e914bc8d763fedb72e530c2b170cf5047e3353b2
-MD5sum: 377ac27a9b3cb9457872293fa8f40eaf
+Filename: pool/nightly/a/accel-ppp/accel-ppp_1.12.0-298-ga73d29d~Ubuntu24_amd64.deb
+Size: 478850
+SHA256: c6afae1df9acae906ccdfb354e525d265bb69ff7fb1b2707405a0566865c7729
+SHA1: 59819ed3d9b4559c5b3ef5002c5c93a615ae22a7
+MD5sum: 6f36f1646c2c4e9259533b61d2b905a3
 Description: PPtP/L2TP/PPPoE/SSTP server for Linux
  Overview
  --------
@@ -191,11 +191,11 @@ Description: PPtP/L2TP/PPPoE/SSTP server for Linux
  ICQ: 337258064
  Jabber: dima@accel-ppp.org
 Maintainer: Dmitry Kozlov <xeb@mail.ru>
-Version: 1.12.0-297-g8fe2ae8~Ubuntu24
+Version: 1.12.0-298-ga73d29d~Ubuntu24
 Installed-Size: 1709
 
 Package: accel-ppp-ipoe-dkms
-Version: 1.12.0-9-g8fe2ae8~Ubuntu24
+Version: 1.12.0-9-ga73d29d~Ubuntu24
 Architecture: all
 Maintainer: Dmitry Kozlov <xeb@mail.ru>
 Installed-Size: 61
@@ -203,15 +203,15 @@ Depends: dkms (>= 2.1.0.0), linux-headers-686-pae | linux-headers-amd64 | linux-
 Homepage: https://www.accel-ppp.io/
 Priority: 0
 Section: net
-Filename: pool/nightly/a/accel-ppp-ipoe-dkms/accel-ppp-ipoe-dkms_1.12.0-9-g8fe2ae8~Ubuntu24_all.deb
-Size: 11986
-SHA256: 6b6aab1ae9310f642fb5ac3a4fdc4869c9033eeb79426b104e840b7a78aaa969
-SHA1: 5d2a55a5a6d70bdde7e977af3c7c9b23934ad520
-MD5sum: fda99dd705ac18c6df06f9e5685ee854
+Filename: pool/nightly/a/accel-ppp-ipoe-dkms/accel-ppp-ipoe-dkms_1.12.0-9-ga73d29d~Ubuntu24_all.deb
+Size: 12026
+SHA256: 6eef58088da13534474202b03142b5750874a9ae8701c555f0938b833f515fc4
+SHA1: 1556dc82251c84eb4bcbc4e95d6cb080d64239a4
+MD5sum: ea909fb1ec442096f5862171ce6d061b
 Description: DKMS source for the accel-ppp-ipoe driver
 
 Package: accel-ppp-vlan-mon-dkms
-Version: 1.12.0-5-g8fe2ae8~Ubuntu24
+Version: 1.12.0-5-ga73d29d~Ubuntu24
 Architecture: all
 Maintainer: Dmitry Kozlov <xeb@mail.ru>
 Installed-Size: 36
@@ -219,10 +219,10 @@ Depends: dkms (>= 2.1.0.0), linux-headers-686-pae | linux-headers-amd64 | linux-
 Homepage: https://www.accel-ppp.io/
 Priority: 0
 Section: net
-Filename: pool/nightly/a/accel-ppp-vlan-mon-dkms/accel-ppp-vlan-mon-dkms_1.12.0-5-g8fe2ae8~Ubuntu24_all.deb
-Size: 6802
-SHA256: aef734962eea30163920681554ec9ee17e4ce84787780b4e8b68cc85c82c3906
-SHA1: dab416e260c97e1ccc6c8cf61016b6c175875b59
-MD5sum: d01c81fd79eeab593376b66183bb97d3
+Filename: pool/nightly/a/accel-ppp-vlan-mon-dkms/accel-ppp-vlan-mon-dkms_1.12.0-5-ga73d29d~Ubuntu24_all.deb
+Size: 6806
+SHA256: ecb4df4cea805ef75a00783eb1102ae90fe61a0d558ef80fbfa86f5c6ce9cef8
+SHA1: 074bde07d2cb86e3f48a49a55c96cb0f1a96af3e
+MD5sum: d632525fe6c945cbc579c32e267dca1c
 Description: DKMS source for the accel-ppp-vlan-mon driver
 
