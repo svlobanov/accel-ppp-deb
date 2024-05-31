@@ -1,0 +1,1 @@
+Directory for saving last processed commits
