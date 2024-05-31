@@ -1,5 +1,0 @@
-Component: nightly
-Origin: accel-ppp
-Label: accel-ppp
-Architecture: amd64
-Description: Apt repository for accel-ppp
