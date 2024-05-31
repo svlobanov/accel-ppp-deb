@@ -3,11 +3,11 @@ Architecture: amd64
 Depends: libc6 (>= 2.37), libssl3 (>= 3.0.9), libpcre3 (>= 8.39), liblua5.1-0
 Priority: 0
 Section: net
-Filename: pool/nightly/a/accel-ppp/accel-ppp_1.12.0-298-ga73d29d~Debian13_amd64.deb
-Size: 464354
-SHA256: 0f2d6751183a631b804ace1985e72a0255961485908e8fb6490cc0e46f648d7a
-SHA1: 76f4e6b92887db0460a0dae43790a00102b48b7d
-MD5sum: df502993bb68123a47ac321d0fbf0e1a
+Filename: pool/nightly/a/accel-ppp/accel-ppp_1.12.0-299-g7bc5d28~Debian13_amd64.deb
+Size: 464360
+SHA256: 65ffce8e1d0b013cd6e2c43c0f35af97933e1fdda2142e36ba8d3f13f0554f06
+SHA1: df7509032f19d2d298901a13e0a09752cb9c7147
+MD5sum: 2810060f56bfbf04f0c362c11193a0e0
 Description: PPtP/L2TP/PPPoE/SSTP server for Linux
  Overview
  --------
@@ -191,7 +191,7 @@ Description: PPtP/L2TP/PPPoE/SSTP server for Linux
  ICQ: 337258064
  Jabber: dima@accel-ppp.org
 Maintainer: Dmitry Kozlov <xeb@mail.ru>
-Version: 1.12.0-298-ga73d29d~Debian13
+Version: 1.12.0-299-g7bc5d28~Debian13
 Installed-Size: 1620
 
 Package: accel-ppp-ipoe-dkms
