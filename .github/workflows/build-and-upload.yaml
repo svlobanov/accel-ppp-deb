@@ -28,17 +28,10 @@ jobs:
       - id: accel_version
         run: echo accel_version=`git describe --tags` >> "$GITHUB_OUTPUT"
       - id: ipoe_pkg_version
-        run: >
-          echo ipoe_pkg_version=\
-            `git describe --tags --abbrev=0`-\
-            `git rev-list $(git describe --tags --abbrev=0)..HEAD --count drivers/ipoe`-\
-            g`git rev-parse --short HEAD ` >> "$GITHUB_OUTPUT"
+        run: echo ipoe_pkg_version=`git describe --tags --abbrev=0`-`git rev-list $(git describe --tags --abbrev=0)..HEAD --count drivers/ipoe`-g`git rev-parse --short HEAD ` >> "$GITHUB_OUTPUT"
       - id: vlan_mon_pkg_version
-        run: >
-          echo vlan_mon_pkg_version=\
-            `git describe --tags --abbrev=0`-\
-            `git rev-list $(git describe --tags --abbrev=0)..HEAD --count drivers/vlan_mon`-\
-            g`git rev-parse --short HEAD ` >> "$GITHUB_OUTPUT"
+        run: echo vlan_mon_pkg_version=`git describe --tags --abbrev=0`-`git rev-list $(git describe --tags --abbrev=0)..HEAD --count drivers/vlan_mon`-g`git rev-parse --short HEAD ` >> "$GITHUB_OUTPUT"
+
       - name: Check out accel-ppp-deb repository code
         uses: actions/checkout@v4
         with:
@@ -139,7 +132,7 @@ jobs:
         working-directory: ./drivers/dkms/ipoe
         run: |
           sed -i "s/#MODULE_VERSION/$IPOE_PKG_VERSION~$CPACK_TYPE/" debian/accel-ppp-ipoe-dkms.dkms
-          cat accel-ppp-ipoe-dkms.dkms
+          cat debian/accel-ppp-ipoe-dkms.dkms
           cp -f ../../../build/version.h src/
           debuild -us -uc -tc -b
         env:
@@ -148,7 +141,7 @@ jobs:
         working-directory: ./drivers/dkms/vlan_mon
         run: |
           sed -i "s/#MODULE_VERSION/$VLAN_MON_PKG_VERSION~$CPACK_TYPE/" debian/accel-ppp-vlan-mon-dkms.dkms
-          cat accel-ppp-vlan-mon-dkms.dkms
+          cat debian/accel-ppp-vlan-mon-dkms.dkms
           cp -f ../../../build/version.h src/
           debuild -us -uc -tc -b
         env:
