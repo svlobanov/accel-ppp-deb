@@ -11,10 +11,14 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       accel_commit: ${{ steps.accel_commit.outputs.accel_commit }}
+      accel_ipoe_commit: ${{ steps.accel_commit.outputs.accel_ipoe_commit }}
+      accel_vlan_mon_commit: ${{ steps.accel_commit.outputs.accel_vlan_mon_commit }}
       accel_version: ${{ steps.accel_version.outputs.accel_version }}
       ipoe_pkg_version: ${{ steps.ipoe_pkg_version.outputs.ipoe_pkg_version }}
       vlan_mon_pkg_version: ${{ steps.vlan_mon_pkg_version.outputs.vlan_mon_pkg_version }}
-      disable_pkg: ${{ steps.disable_pkg.outputs.disable_pkg }}
+      disable_all_pkg: ${{ steps.disable_all_pkg.outputs.disable_all_pkg }}
+      disable_ipoe_pkg: ${{ steps.disable_ipoe_pkg.outputs.disable_ipoe_pkg }}
+      disable_vlan_mon_pkg: ${{ steps.disable_vlan_mon_pkg.outputs.disable_vlan_mon_pkg }}
 
     steps:
       - name: Check out accel-ppp repository code
@@ -24,7 +28,10 @@ jobs:
           ref: dkms2
           fetch-depth: 0
       - id: accel_commit
-        run: echo accel_commit=`git rev-parse HEAD` >> "$GITHUB_OUTPUT"
+        run: |
+          echo accel_commit=`git rev-parse HEAD` >> "$GITHUB_OUTPUT"
+          echo accel_ipoe_commit=`git rev-list HEAD -1 -- drivers/ipoe` >> "$GITHUB_OUTPUT"
+          echo accel_vlan_mon_commit=`git rev-list HEAD -1 -- drivers/vlan_mon` >> "$GITHUB_OUTPUT"
       - id: accel_version
         run: echo accel_version=`git describe --tags` >> "$GITHUB_OUTPUT"
       - id: ipoe_pkg_version
@@ -37,16 +44,31 @@ jobs:
         with:
           path: accel-ppp-deb
           fetch-depth: 1
-      - name: Get last commit pushed to repository (nightly build)
-        run: echo LAST_PROCESSED_ACCEL_COMMIT=`cat accel-ppp-deb/state/commit_sha_nightly` >> $GITHUB_ENV;
-      - id: disable_pkg
+      - name: Get last commit pushed to repository (nightly)
+        run: |
+          echo LAST_PROCESSED_ACCEL_COMMIT=`cat accel-ppp-deb/state/commit_sha_nightly` >> $GITHUB_ENV;
+          echo LAST_PROCESSED_IPOE_COMMIT=`cat accel-ppp-deb/state/ipoe_commit_sha_nightly` >> $GITHUB_ENV;
+          echo LAST_PROCESSED_VLAN_MON_COMMIT=`cat accel-ppp-deb/state/vlan_mon_commit_sha_nightly` >> $GITHUB_ENV;
+
+      - id: disable_all_pkg
         if: ${{ steps.accel_commit.outputs.accel_commit == env.LAST_PROCESSED_ACCEL_COMMIT }}
-        name: Disable next jobs if no new commits (no new commits)
-        run: echo disable_pkg=true >> "$GITHUB_OUTPUT"
+        name: Disable all builds
+        run: echo disable_all_pkg=true >> "$GITHUB_OUTPUT"
+      - id: disable_ipoe_pkg
+        if: ${{ steps.accel_commit.outputs.accel_ipoe_commit == env.LAST_PROCESSED_IPOE_COMMIT }}
+        name: Disable ipoe build
+        run: echo disable_ipoe_pkg=true >> "$GITHUB_OUTPUT"
+      - id: disable_vlan_mon_pkg
+        if: ${{ steps.accel_commit.outputs.accel_vlan_mon_commit == env.LAST_PROCESSED_VLAN_MON_COMMIT }}
+        name: Disable vlan_mon build
+        run: echo disable_vlan_mon_pkg=true >> "$GITHUB_OUTPUT"
+
+      - name: Show all outputs
+        run: cat $GITHUB_OUTPUT
 
   Build-in-Container-Debian:
     needs: Get-Check-Versions
-    if: ${{ needs.Get-Check-Versions.outputs.disable_pkg != 'true' }}
+    if: ${{ needs.Get-Check-Versions.outputs.disable_all_pkg != 'true' }}
     strategy:
       fail-fast: true
       matrix:
@@ -99,6 +121,7 @@ jobs:
           echo KERNEL_NAME=`ls -1 /usr/src/ | grep  'linux-headers.*${{ env.HEADERS_SUFFIX }}' | 
           sed 's/linux-headers-//'` >> $GITHUB_ENV;
           cat $GITHUB_ENV
+
       - name: Check out accel-ppp repository code
         uses: actions/checkout@v4
         with:
@@ -124,6 +147,7 @@ jobs:
         working-directory: ./build
         run: cpack -G DEB
       - name: build dkms package for ipoe
+        if: ${{ needs.Get-Check-Versions.outputs.disable_ipoe_pkg != 'true' }}
         working-directory: ./drivers/dkms/ipoe
         run: |
           dch -b -D unstable -v "$IPOE_PKG_VERSION~$CPACK_TYPE" ""
@@ -132,6 +156,7 @@ jobs:
         env:
           IPOE_PKG_VERSION: ${{needs.Get-Check-Versions.outputs.ipoe_pkg_version}}
       - name: build dkms package for vlan_mon
+        if: ${{ needs.Get-Check-Versions.outputs.disable_vlan_mon_pkg != 'true' }}
         working-directory: ./drivers/dkms/vlan_mon
         run: |
           dch -b -D unstable -v "$VLAN_MON_PKG_VERSION~$CPACK_TYPE" ""
@@ -139,6 +164,7 @@ jobs:
           debuild -us -uc -tc -b
         env:
           VLAN_MON_PKG_VERSION: ${{needs.Get-Check-Versions.outputs.vlan_mon_pkg_version}}
+
       - name: Upload accel-ppp and drivers .deb packages as artifact
         uses: actions/upload-artifact@v4
         with:
@@ -148,10 +174,9 @@ jobs:
             drivers/dkms/*.deb
           if-no-files-found: error
 
-
   Upload-to-Repo:
     needs: [Build-in-Container-Debian, Get-Check-Versions]
-    if: ${{ needs.Get-Check-Versions.outputs.disable_pkg != 'true' }}
+    if: ${{ needs.Get-Check-Versions.outputs.disable_all_pkg != 'true' }}
     runs-on: ubuntu-latest
     steps:
       - name: Install reprepro
@@ -185,7 +210,10 @@ jobs:
           done
 
       - name: Save accel-ppp commit hash (nightly)
-        run: echo $ACCEL_COMMIT > state/commit_sha_nightly
+        run: |
+          echo $ACCEL_COMMIT > state/commit_sha_nightly
+          echo $ACCEL_IPOE_COMMIT > state/ipoe_commit_sha_nightly
+          echo $ACCEL_VLAN_MON_COMMIT > state/vlan_mon_commit_sha_nightly
         env:
           ACCEL_COMMIT: ${{needs.Get-Check-Versions.outputs.accel_commit}}
 
