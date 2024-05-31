@@ -32,6 +32,7 @@ jobs:
           echo accel_commit=`git rev-parse HEAD` >> "$GITHUB_OUTPUT"
           echo accel_ipoe_commit=`git rev-list HEAD -1 -- drivers/ipoe` >> "$GITHUB_OUTPUT"
           echo accel_vlan_mon_commit=`git rev-list HEAD -1 -- drivers/vlan_mon` >> "$GITHUB_OUTPUT"
+          cat "$GITHUB_OUTPUT"
       - id: accel_version
         run: echo accel_version=`git describe --tags` >> "$GITHUB_OUTPUT"
       - id: ipoe_pkg_version
@@ -216,6 +217,8 @@ jobs:
           echo $ACCEL_VLAN_MON_COMMIT > state/vlan_mon_commit_sha_nightly
         env:
           ACCEL_COMMIT: ${{needs.Get-Check-Versions.outputs.accel_commit}}
+          ACCEL_IPOE_COMMIT: ${{needs.Get-Check-Versions.outputs.accel_ipoe_commit}}
+          ACCEL_VLAN_MON_COMMIT: ${{needs.Get-Check-Versions.outputs.accel_vlan_mon_commit}}
 
       - name: Push changes to repository
         run: |
