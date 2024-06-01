@@ -1,7 +1,7 @@
 Origin: accel-ppp
 Label: accel-ppp
 Codename: trixie
-Date: Fri, 31 May 2024 23:25:07 UTC
+Date: Sat, 01 Jun 2024 00:02:05 UTC
 Architectures: amd64
 Components: main nightly
 Description: Apt repository for accel-ppp
@@ -9,20 +9,20 @@ MD5Sum:
  d41d8cd98f00b204e9800998ecf8427e 0 main/binary-amd64/Packages
  7029066c27ac6f5ef18d660d5741979a 20 main/binary-amd64/Packages.gz
  13fd4ee4ad5f877f36399c7533782667 113 main/binary-amd64/Release
- 4989fa12457238ef166d786638d111fa 10487 nightly/binary-amd64/Packages
- f1f6c3bd73e91d6635e3137c58d7a5a5 4076 nightly/binary-amd64/Packages.gz
+ fb1ca6e33ef65a2fb53c97048fd59b5b 10487 nightly/binary-amd64/Packages
+ 671747e4586d192c7be0f52427d62ede 4075 nightly/binary-amd64/Packages.gz
  2a844ac558310f687f6918c9942ccd76 116 nightly/binary-amd64/Release
 SHA1:
  da39a3ee5e6b4b0d3255bfef95601890afd80709 0 main/binary-amd64/Packages
  46c6643f07aa7f6bfe7118de926b86defc5087c4 20 main/binary-amd64/Packages.gz
  19c00a946a80bb3ce6385aa51b7f2ba981ba0e48 113 main/binary-amd64/Release
- ddc2817d4a0781089277b97fa891f7d0cc31592c 10487 nightly/binary-amd64/Packages
- 322e422f9ae98bddeca02affb4c70a5b975f1bfc 4076 nightly/binary-amd64/Packages.gz
+ 91128a976eae3f5c7fcf1d6181593766a4346937 10487 nightly/binary-amd64/Packages
+ c14db5cb3b5f3b5d6ea9e6021e9bb0f62f44d141 4075 nightly/binary-amd64/Packages.gz
  dbed05e7598094d870544d32468a74c216b3e86f 116 nightly/binary-amd64/Release
 SHA256:
  e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 0 main/binary-amd64/Packages
  59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2 20 main/binary-amd64/Packages.gz
  15954fc1a2afaaaa502e5c1a1e39e215fe974ec0e140cc4fbd5f75173b931d25 113 main/binary-amd64/Release
- 82bec47e974a64e6ba0c9a8905b0430ac5f28115a45c7ba93ebded985f5368dc 10487 nightly/binary-amd64/Packages
- 4685acba4c1747c83493613b76d9745a73193ece0637bd63a53cee0a1be9c265 4076 nightly/binary-amd64/Packages.gz
+ bd3f64bf3b53f6abae1405d11f3cc94df8d3f0d5575e60320e609817bcda5e3f 10487 nightly/binary-amd64/Packages
+ 52808e9bbf91750779b782a5dc3077661ccb97ff3cdd45d1c974fb253ad6b2e6 4075 nightly/binary-amd64/Packages.gz
  f8e931fba41a2f8b4de0b934911d4702f5c0ebe7609bd263a3e7831a5ded2ed7 116 nightly/binary-amd64/Release
