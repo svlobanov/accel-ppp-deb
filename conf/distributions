@@ -2,7 +2,7 @@ Origin: accel-ppp
 Label: accel-ppp
 Codename: buster
 Architectures: amd64
-Components: main nightly
+Components: release nightly
 Description: Apt repository for accel-ppp
 SignWith: 322ACAC560CE6F2C3E9AAD897D78E93FC639AB34
 
@@ -10,7 +10,7 @@ Origin: accel-ppp
 Label: accel-ppp
 Codename: bullseye
 Architectures: amd64
-Components: main nightly
+Components: release nightly
 Description: Apt repository for accel-ppp
 SignWith: 322ACAC560CE6F2C3E9AAD897D78E93FC639AB34
 
@@ -18,7 +18,7 @@ Origin: accel-ppp
 Label: accel-ppp
 Codename: bookworm
 Architectures: amd64
-Components: main nightly
+Components: release nightly
 Description: Apt repository for accel-ppp
 SignWith: 322ACAC560CE6F2C3E9AAD897D78E93FC639AB34
 
@@ -26,7 +26,7 @@ Origin: accel-ppp
 Label: accel-ppp
 Codename: trixie
 Architectures: amd64
-Components: main nightly
+Components: release nightly
 Description: Apt repository for accel-ppp
 SignWith: 322ACAC560CE6F2C3E9AAD897D78E93FC639AB34
 
@@ -34,7 +34,7 @@ Origin: accel-ppp
 Label: accel-ppp
 Codename: focal
 Architectures: amd64
-Components: main nightly
+Components: release nightly
 Description: Apt repository for accel-ppp
 SignWith: 322ACAC560CE6F2C3E9AAD897D78E93FC639AB34
 
@@ -42,7 +42,7 @@ Origin: accel-ppp
 Label: accel-ppp
 Codename: jammy
 Architectures: amd64
-Components: main nightly
+Components: release nightly
 Description: Apt repository for accel-ppp
 SignWith: 322ACAC560CE6F2C3E9AAD897D78E93FC639AB34
 
@@ -50,6 +50,6 @@ Origin: accel-ppp
 Label: accel-ppp
 Codename: noble
 Architectures: amd64
-Components: main nightly
+Components: release nightly
 Description: Apt repository for accel-ppp
 SignWith: 322ACAC560CE6F2C3E9AAD897D78E93FC639AB34

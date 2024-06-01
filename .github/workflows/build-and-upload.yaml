@@ -64,9 +64,6 @@ jobs:
         name: Disable vlan_mon build
         run: echo disable_vlan_mon_pkg=true >> "$GITHUB_OUTPUT"
 
-      - name: Show all outputs
-        run: cat $GITHUB_OUTPUT
-
   Build-in-Container-Debian:
     needs: Get-Check-Versions
     if: ${{ needs.Get-Check-Versions.outputs.disable_all_pkg != 'true' }}
@@ -83,6 +80,7 @@ jobs:
             "ubuntu:22.04",
             "ubuntu:24.04",
           ]
+        component: ["release", "nightly"]
     runs-on: ubuntu-latest
     container:
       image: ${{ matrix.distro }}
@@ -169,7 +167,7 @@ jobs:
       - name: Upload accel-ppp and drivers .deb packages as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: deb-accel-ppp-${{ env.CODENAME }}
+          name: ${{ matrix.component }}-deb-accel-ppp-${{ env.CODENAME }}
           path: |
             build/*.deb
             drivers/dkms/*.deb
@@ -206,8 +204,8 @@ jobs:
         run: >
           for codename in buster bullseye bookworm trixie focal jammy noble ; do
             echo Add packages for distro codename=${codename};
-            reprepro -V --section net --component nightly --priority 0 includedeb ${codename} incoming/deb-accel-ppp-${codename}/*/*.deb;
-            reprepro -V --section net --component nightly --priority 0 includedeb ${codename} incoming/deb-accel-ppp-${codename}/*/*/*.deb;
+            reprepro -V --section net --component nightly --priority 0 includedeb ${codename} incoming/nightly-deb-accel-ppp-${codename}/*/*.deb;
+            reprepro -V --section net --component nightly --priority 0 includedeb ${codename} incoming/nightly-deb-accel-ppp-${codename}/*/*/*.deb;
           done
 
       - name: Save accel-ppp commit hash (nightly)
