@@ -64,7 +64,7 @@ jobs:
         name: Disable vlan_mon build
         run: echo disable_vlan_mon_pkg=true >> "$GITHUB_OUTPUT"
 
-  Build-in-Container-Debian:
+  Build-Deb:
     needs: Get-Check-Versions
     if: ${{ needs.Get-Check-Versions.outputs.disable_all_pkg != 'true' }}
     strategy:
