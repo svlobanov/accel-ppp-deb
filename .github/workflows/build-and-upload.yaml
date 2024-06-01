@@ -174,7 +174,7 @@ jobs:
           if-no-files-found: error
 
   Upload-to-Repo:
-    needs: [Build-in-Container-Debian, Get-Check-Versions]
+    needs: [Build-Deb, Get-Check-Versions]
     if: ${{ needs.Get-Check-Versions.outputs.disable_all_pkg != 'true' }}
     runs-on: ubuntu-latest
     steps:
