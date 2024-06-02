@@ -1,8 +1,35 @@
+# This workflow does the following:
+# 1. Check if there are new commits in accel-ppp repository and decide if it is require to
+#    update nightly builds or release repository (job: Get-Check-Versions)
+# 2. Build deb packages for nightly and release repositories. Packages are split to accel-ppp
+#    and dkms drivers packages (accel-ppp-ipoe-dkms and accel-ppp-vlan-mon-dkms) (job: Build-Deb)
+# 3. Add built packages to APT repository and push updated APT repository to git repository. This
+#    job also stores processed accel-ppp version (commit sha) for step 1 for next run
+#    (job: Upload-to-Repo)
+#
+# Package Versioning
+# accel-ppp and drivers packages versions are different. It is done to avoid updating driver
+# packages in case of no changes related to the driver
+#
+# GPG Key Management
+# Deb packages should be signed. The following section describes signing process
+# 1. To generate public and private keys: `gpg --full-generate-key`, select key=RSA and RSA, 4096 bit,
+#    choose no password protection (password protection will not enchance security)
+# 2. Get subkey-id(!) from the output of the command: `gpg --list-secret-key --with-subkey-fingerprint`,
+#    for example 322ACAC560CE6F2C3E9AAD897D78E93FC639AB34
+# 3. To export public key (stored in accel-ppp-deb.gpg.key to provide it repository users): 
+#    `gpg --armor --output accel-ppp-deb.gpg.key --export-options export-minimal \
+#         --export 322ACAC560CE6F2C3E9AAD897D78E93FC639AB34`
+# 4. To export private key: gpg --export-secret-subkeys 322ACAC560CE6F2C3E9AAD897D78E93FC639AB34 | base64
+#    Store the output in 'DEB_PKG_GPG_KEY' repository secret, it will be used as secrets.DEB_PKG_GPG_KEY
+# 5. Use subkey-id as a value for SignWith field in 'conf/distributions' file
 name: Build and Upload
 
 on:
   workflow_dispatch:
 
+# This workflow does 'git push' to store packages and auxiliary files related to apt repository
+# so write permissions are required
 permissions:
   contents: write
 
@@ -10,6 +37,7 @@ jobs:
   Get-Check-Versions:
     runs-on: ubuntu-latest
     outputs:
+      # accel_commit is used to decide whether there are new commits in accel-ppp repository
       accel_commit: ${{ steps.accel_commit.outputs.accel_commit }}
       accel_ipoe_commit: ${{ steps.accel_commit.outputs.accel_ipoe_commit }}
       accel_vlan_mon_commit: ${{ steps.accel_commit.outputs.accel_vlan_mon_commit }}
@@ -70,6 +98,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
+        # This list should contain supported versions of Debian and Ubuntu
         distro:
           [
             "debian:10",
@@ -83,6 +112,7 @@ jobs:
         component: ["release", "nightly"]
     runs-on: ubuntu-latest
     container:
+      # Build is done on native OS in container to avoid cross-OS build issues
       image: ${{ matrix.distro }}
     steps:
       - name: Set distro-specific vars
@@ -145,7 +175,10 @@ jobs:
       - name: Generate debian package (without drivers)
         working-directory: ./build
         run: cpack -G DEB
-      - name: build dkms package for ipoe
+      # debuild is used to build dkms package so package version is extracted from debian 
+      # changelog (drivers/dkms/ipoe/debian/changelog). dch tool is required to set correct version 
+      # of the package calculated in Get-Check-Versions job
+      - name: build dkms package for ipoe (if there new commits related to driver)
         if: ${{ needs.Get-Check-Versions.outputs.disable_ipoe_pkg != 'true' }}
         working-directory: ./drivers/dkms/ipoe
         run: |
@@ -154,7 +187,7 @@ jobs:
           debuild -us -uc -tc -b
         env:
           IPOE_PKG_VERSION: ${{needs.Get-Check-Versions.outputs.ipoe_pkg_version}}
-      - name: build dkms package for vlan_mon
+      - name: build dkms package for vlan_mon (if there new commits related to driver)
         if: ${{ needs.Get-Check-Versions.outputs.disable_vlan_mon_pkg != 'true' }}
         working-directory: ./drivers/dkms/vlan_mon
         run: |
@@ -173,6 +206,9 @@ jobs:
             drivers/dkms/*.deb
           if-no-files-found: error
 
+  # This job waits for all the packages to be built and adds them all to APT repository, 
+  # then uploads them to GIT repository in one commit. This approach is required to avoid
+  # conflicts in case of parallel git pushes
   Upload-to-Repo:
     needs: [Build-Deb, Get-Check-Versions]
     if: ${{ needs.Get-Check-Versions.outputs.disable_all_pkg != 'true' }}
@@ -202,13 +238,16 @@ jobs:
 
       - name: Add packages to repository
         run: >
-          for codename in buster bullseye bookworm trixie focal jammy noble ; do
-            echo Add packages for distro codename=${codename};
-            reprepro -V --section net --component nightly --priority 0 includedeb ${codename} incoming/nightly-deb-accel-ppp-${codename}/*/*.deb;
-            reprepro -V --section net --component nightly --priority 0 includedeb ${codename} incoming/nightly-deb-accel-ppp-${codename}/*/*/*.deb;
+          for component in nightly release ; do
+            for codename in buster bullseye bookworm trixie focal jammy noble ; do
+              echo Add accel-ppp for distro codename=${codename} component=$component;
+              reprepro -V --section net --component $component --priority 0 includedeb ${codename} incoming/$component-deb-accel-ppp-${codename}/*/*.deb;
+              echo Add drivers for distro codename=${codename} component=$component;
+              reprepro -V --section net --component $component --priority 0 includedeb ${codename} incoming/$component-deb-accel-ppp-${codename}/*/*/*.deb;
+            done
           done
 
-      - name: Save accel-ppp commit hash (nightly)
+      - name: Save accel-ppp and drives commit hashes (nightly)
         run: |
           echo $ACCEL_COMMIT > state/commit_sha_nightly
           echo $ACCEL_IPOE_COMMIT > state/ipoe_commit_sha_nightly
@@ -218,7 +257,7 @@ jobs:
           ACCEL_IPOE_COMMIT: ${{needs.Get-Check-Versions.outputs.accel_ipoe_commit}}
           ACCEL_VLAN_MON_COMMIT: ${{needs.Get-Check-Versions.outputs.accel_vlan_mon_commit}}
 
-      - name: Push changes to repository
+      - name: Push changes to git repository
         run: |
           git config user.name build-upload-bot
           git config user.email no-reply@github.com
