@@ -1,5 +1,5 @@
 # This workflow does the following:
-# 1. Check if there are new commits in accel-ppp repository and decide if it is require to
+# 1. Check if there are new commits in accel-ppp repository and decide if it is required to
 #    update nightly builds or release repository (job: Get-Check-Versions)
 # 2. Build deb packages for nightly and release repositories. Packages are split to accel-ppp
 #    and dkms drivers packages (accel-ppp-ipoe-dkms and accel-ppp-vlan-mon-dkms) (job: Build-Deb)
@@ -20,8 +20,9 @@
 # 3. To export public key (stored in accel-ppp-deb.gpg.key to provide it repository users): 
 #    `gpg --armor --output accel-ppp-deb.gpg.key --export-options export-minimal \
 #         --export 322ACAC560CE6F2C3E9AAD897D78E93FC639AB34`
-# 4. To export private key: gpg --export-secret-subkeys 322ACAC560CE6F2C3E9AAD897D78E93FC639AB34 | base64
-#    Store the output in 'DEB_PKG_GPG_KEY' repository secret, it will be used as secrets.DEB_PKG_GPG_KEY
+# 4. To export private key: `gpg --armor --export-secret-key 322ACAC560CE6F2C3E9AAD897D78E93FC639AB34`.
+#    Store the output in 'DEB_PKG_GPG_KEY' repository secret, it is be used as secrets.DEB_PKG_GPG_KEY
+#    in Upload-to-Repo job
 # 5. Use subkey-id as a value for SignWith field in 'conf/distributions' file
 name: Build and Upload
 
@@ -218,7 +219,7 @@ jobs:
         run: sudo apt update && sudo apt -y install reprepro
 
       - name: Import GPG key for signing debian packages
-        run: echo "$GPG_KEY" | base64 --decode | gpg --batch --import
+        run: echo "$GPG_KEY" | gpg --batch --import
         env:
           GPG_KEY: ${{ secrets.DEB_PKG_GPG_KEY }}
 
