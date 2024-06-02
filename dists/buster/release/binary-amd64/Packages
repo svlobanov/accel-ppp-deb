@@ -1,0 +1,47 @@
+Package: accel-ppp
+Architecture: amd64
+Depends: libc6 (>= 2.28), libssl1.1 (>= 1.1.1c), libpcre3 (>= 8.39), liblua5.1-0
+Priority: 0
+Section: net
+Filename: pool/release/a/accel-ppp/accel-ppp_1.12.0-301-g7b48315~Debian10_amd64.deb
+Size: 465788
+SHA256: c5ac7f80028315f0d901b451e2257591e4bf82c79246ad7d67f47722b02d11c0
+SHA1: 5b4400cf95020a3c77eb773b36f653d341c8d2b5
+MD5sum: 343a071eccabe043089827059e9e3a15
+Description: PPtP/L2TP/PPPoE/SSTP server for Linux
+Maintainer: Dmitry Kozlov <xeb@mail.ru>
+Version: 1.12.0-301-g7b48315~Debian10
+Installed-Size: 1630
+
+Package: accel-ppp-ipoe-dkms
+Version: 1.12.0-9-g7b48315~Debian10
+Architecture: all
+Maintainer: Dmitry Kozlov <xeb@mail.ru>
+Installed-Size: 61
+Depends: dkms (>= 2.1.0.0), linux-headers-686-pae | linux-headers-amd64 | linux-headers-generic | linux-headers
+Homepage: https://www.accel-ppp.io/
+Priority: 0
+Section: net
+Filename: pool/release/a/accel-ppp-ipoe-dkms/accel-ppp-ipoe-dkms_1.12.0-9-g7b48315~Debian10_all.deb
+Size: 11844
+SHA256: ceb6aec03689fed34e0a717ae3504ed088fad7faecdd406da5fd9a0b17d38ab4
+SHA1: 8e1718e9d8ebf89ae4b92f620df262afc1e66920
+MD5sum: 1c73fbc1de8d4cef75b37649de5a40d9
+Description: DKMS source for the accel-ppp-ipoe driver
+
+Package: accel-ppp-vlan-mon-dkms
+Version: 1.12.0-5-g7b48315~Debian10
+Architecture: all
+Maintainer: Dmitry Kozlov <xeb@mail.ru>
+Installed-Size: 36
+Depends: dkms (>= 2.1.0.0), linux-headers-686-pae | linux-headers-amd64 | linux-headers-generic | linux-headers
+Homepage: https://www.accel-ppp.io/
+Priority: 0
+Section: net
+Filename: pool/release/a/accel-ppp-vlan-mon-dkms/accel-ppp-vlan-mon-dkms_1.12.0-5-g7b48315~Debian10_all.deb
+Size: 6776
+SHA256: fb88272740c3202b0e87d64189259349bd739ac2c5c8666198c28083e355dcd7
+SHA1: 2b941f258e8eeb5c40cc174db866b8b4a0e94e58
+MD5sum: 67f1d682ea9ab6d7eb9343195d1a7ad5
+Description: DKMS source for the accel-ppp-vlan-mon driver
+

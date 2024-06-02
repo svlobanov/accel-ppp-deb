@@ -1,28 +1,28 @@
 Origin: accel-ppp
 Label: accel-ppp
 Codename: jammy
-Date: Sat, 01 Jun 2024 00:02:06 UTC
+Date: Sun, 02 Jun 2024 01:06:53 UTC
 Architectures: amd64
-Components: main nightly
+Components: release nightly
 Description: Apt repository for accel-ppp
 MD5Sum:
- d41d8cd98f00b204e9800998ecf8427e 0 main/binary-amd64/Packages
- 7029066c27ac6f5ef18d660d5741979a 20 main/binary-amd64/Packages.gz
- 13fd4ee4ad5f877f36399c7533782667 113 main/binary-amd64/Release
- 478bea014d60c938963b6980cdd857ad 10487 nightly/binary-amd64/Packages
- d2f013f0c1c47a8822747ed28585cdc3 4070 nightly/binary-amd64/Packages.gz
+ 678219eb7d2860a714463b308ef3d357 10487 release/binary-amd64/Packages
+ 0b57fecf85f54f67b1998013b6039a3b 4066 release/binary-amd64/Packages.gz
+ fd85462a3d0b8941b578b5f57bf4b752 116 release/binary-amd64/Release
+ 9270febeee9c9ffeaf4ccc5d79cbcee8 10487 nightly/binary-amd64/Packages
+ d99825a74d2c39df75e4f68e5fd79b50 4072 nightly/binary-amd64/Packages.gz
  2a844ac558310f687f6918c9942ccd76 116 nightly/binary-amd64/Release
 SHA1:
- da39a3ee5e6b4b0d3255bfef95601890afd80709 0 main/binary-amd64/Packages
- 46c6643f07aa7f6bfe7118de926b86defc5087c4 20 main/binary-amd64/Packages.gz
- 19c00a946a80bb3ce6385aa51b7f2ba981ba0e48 113 main/binary-amd64/Release
- 9b4df8bb6a69a6a69e959cd968bb26ab19070a9b 10487 nightly/binary-amd64/Packages
- 77d86d0b123ede23469046d7aa3987fec224d66a 4070 nightly/binary-amd64/Packages.gz
+ c06af06d9abba2c60549e281e164479f4e2482ab 10487 release/binary-amd64/Packages
+ edf3cce312c5a91476153d0e7ff86d454d37a273 4066 release/binary-amd64/Packages.gz
+ 2d9d1ecda390270fb00399f4fdd38b53c692cdfe 116 release/binary-amd64/Release
+ 18b5523bb14a02f98d54b650098dc446c5a69efe 10487 nightly/binary-amd64/Packages
+ db419a558ae3a203fe199a4d0a7f0c7562921f5e 4072 nightly/binary-amd64/Packages.gz
  dbed05e7598094d870544d32468a74c216b3e86f 116 nightly/binary-amd64/Release
 SHA256:
- e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 0 main/binary-amd64/Packages
- 59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2 20 main/binary-amd64/Packages.gz
- 15954fc1a2afaaaa502e5c1a1e39e215fe974ec0e140cc4fbd5f75173b931d25 113 main/binary-amd64/Release
- 0ef54c3db44905ab8052cc20128aa542a5640d1341fb64e0f2376560acb5f613 10487 nightly/binary-amd64/Packages
- d50859038998e45f77186ece9926922937069f50e1c3a6d05d418c43e85288d1 4070 nightly/binary-amd64/Packages.gz
+ 46f5cd1e196b6df85dba3b5731e8c1717d3cce4606f080ec3ac1ffc5f30481cd 10487 release/binary-amd64/Packages
+ cd8e7aeb15562a40e72fa5303b3b43c9d83d5889b4b27f68a1e8ff5e0e7f0ef4 4066 release/binary-amd64/Packages.gz
+ 1ece88dae937716b3ee72c8f33df4e8cfee38b182262448c0cf4ad05eb99244f 116 release/binary-amd64/Release
+ 4ba07d119fb4c4ae3042f5c334a64bc45f3320bfe4ce84a279a03578310335a8 10487 nightly/binary-amd64/Packages
+ 050f9c0ed197fa1b05939801667d7ca716ed3923aafa0b07373452b1b8120f91 4072 nightly/binary-amd64/Packages.gz
  f8e931fba41a2f8b4de0b934911d4702f5c0ebe7609bd263a3e7831a5ded2ed7 116 nightly/binary-amd64/Release

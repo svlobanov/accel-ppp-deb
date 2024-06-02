@@ -4,44 +4,44 @@ Hash: SHA512
 Origin: accel-ppp
 Label: accel-ppp
 Codename: buster
-Date: Sat, 01 Jun 2024 00:02:05 UTC
+Date: Sun, 02 Jun 2024 01:06:52 UTC
 Architectures: amd64
-Components: main nightly
+Components: release nightly
 Description: Apt repository for accel-ppp
 MD5Sum:
- d41d8cd98f00b204e9800998ecf8427e 0 main/binary-amd64/Packages
- 7029066c27ac6f5ef18d660d5741979a 20 main/binary-amd64/Packages.gz
- 13fd4ee4ad5f877f36399c7533782667 113 main/binary-amd64/Release
- bd2a0701e8bce5e4b6512947fb0b9676 1857 nightly/binary-amd64/Packages
- 19ba88600ab1a493d8d02ce775b6a552 775 nightly/binary-amd64/Packages.gz
+ d031dcff37f645ed67b24088da5589a6 1857 release/binary-amd64/Packages
+ 56dc570fcfcc786163a3b0befead9813 771 release/binary-amd64/Packages.gz
+ fd85462a3d0b8941b578b5f57bf4b752 116 release/binary-amd64/Release
+ 81b799634e3be6b5ea76414dea4c80d5 1857 nightly/binary-amd64/Packages
+ 5e9dfa1955a0db339ebd296b99c67d52 774 nightly/binary-amd64/Packages.gz
  2a844ac558310f687f6918c9942ccd76 116 nightly/binary-amd64/Release
 SHA1:
- da39a3ee5e6b4b0d3255bfef95601890afd80709 0 main/binary-amd64/Packages
- 46c6643f07aa7f6bfe7118de926b86defc5087c4 20 main/binary-amd64/Packages.gz
- 19c00a946a80bb3ce6385aa51b7f2ba981ba0e48 113 main/binary-amd64/Release
- ddb0693ebad9a030a1b5a36f176f58b5b7193183 1857 nightly/binary-amd64/Packages
- c7ac8f90cbbc8a911a1c956be4a788fc17146b61 775 nightly/binary-amd64/Packages.gz
+ 62ed2fb9b29a3e04afc3e78f275c9ce1e56d751f 1857 release/binary-amd64/Packages
+ f354ae84f00618a2bfa8804ec81c5c18ca379383 771 release/binary-amd64/Packages.gz
+ 2d9d1ecda390270fb00399f4fdd38b53c692cdfe 116 release/binary-amd64/Release
+ cc70b3ab748aa32896f5b1fbc3c21c0617471c29 1857 nightly/binary-amd64/Packages
+ cae618881ca2de7549716746a9880ffa31f42d2d 774 nightly/binary-amd64/Packages.gz
  dbed05e7598094d870544d32468a74c216b3e86f 116 nightly/binary-amd64/Release
 SHA256:
- e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 0 main/binary-amd64/Packages
- 59869db34853933b239f1e2219cf7d431da006aa919635478511fabbfc8849d2 20 main/binary-amd64/Packages.gz
- 15954fc1a2afaaaa502e5c1a1e39e215fe974ec0e140cc4fbd5f75173b931d25 113 main/binary-amd64/Release
- 6632bfed4d22cb5160a62d0370983f931a4ca480a6376edfc65fab33b3a329a9 1857 nightly/binary-amd64/Packages
- 163e862be4994e0bff2468a4c919917d742ac90d04137173e5a16f40d0bfa3a8 775 nightly/binary-amd64/Packages.gz
+ 507349b0f4690a2248c5fb4cdfa98005d6ffb8033db6420da5d85facdac78736 1857 release/binary-amd64/Packages
+ 06da60b99788116e6bf55b698bf9cd0654c2e18d7c526af55b91faf168c71614 771 release/binary-amd64/Packages.gz
+ 1ece88dae937716b3ee72c8f33df4e8cfee38b182262448c0cf4ad05eb99244f 116 release/binary-amd64/Release
+ 48448dcd17deef7336fc422a29ceb737c81458c1d3651bd5d5220f37c2ef2675 1857 nightly/binary-amd64/Packages
+ 3743182bf08ad87f0ee1729d3c155b23e91fb2c328f2d9f1d9cf0aa219f2d3b5 774 nightly/binary-amd64/Packages.gz
  f8e931fba41a2f8b4de0b934911d4702f5c0ebe7609bd263a3e7831a5ded2ed7 116 nightly/binary-amd64/Release
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCgAdFiEE294qCOjOvfiOyiJzJVRSA4NwzrMFAmZaZP0ACgkQJVRSA4Nw
-zrOtPg//URMyfQd2OD5roXvfXp5udC05I/thRGZXLvTp6xRG+NuXHlsL5XNr6rbj
-Aat0TPtcu/ygSsmmnT4Tkdi/adDEEJaaziGaDibSdaEITEBDx2uD0IsagW8OLbS4
-p9tsYFQWD387cJBj63M3YQkS66FVelPQKUiUz6uY0GP9cgwEXwhqdBSbzlGHFoma
-Tk4SXGRvxG+kjzjCXEw8vAPU7FDP8HbYmJfnlcXvRHzkAfTHp+96wD9AYdBiEljz
-dk5GWIWbl1e0YgzQx0lirwVG8azzS2AeX9tf4Uqt7Vaarq4rgFJqksefy4amJi9D
-DE5STh7H8meMayRK9AmTRksOw5q7sTG2OnsHxQpvVKYvTCUzUTK1cIcr4pLTdpHt
-KRa0s9ZA1ejMzw7y1OBeYsi+It2NUnC4Uuk3Mt2eSaVPESp+rIqdK311KpVGLKu6
-L/aRTQ+t64GYs716Eqr0tu5012w9jX2hxLAC9mZwuoAi4elTX+1hJrh7bZnYuJCL
-s4K/x02whWIF3ooRd04AlbFzU0Y948hxs1FuZFnd7DYwYIEDRs9GjegPj0TfybDv
-A/QBAQlzEJxySXvh2TYRafdWIcLiAVXNHzzLwGe7uSSqlbabka/9Rwf+qP8m22De
-SUfZlsk8YD5oFIeNJjYcblpiEjA9Y+wUW3iBJo7gPyjna6NIb9s=
-=a9Vv
+iQIzBAEBCgAdFiEE294qCOjOvfiOyiJzJVRSA4NwzrMFAmZbxawACgkQJVRSA4Nw
+zrOllA/8DE80XCsjbkT4edcahbqDPpgJzWyskJyG9IjBsEhoNLEEcKzyFN53m1CU
+cCz86GR0mYUzv6bUUOaH1CtR7StF7mx6fqtynL/EG2a4YuwqujbNH6xQzN9mu+Lj
+754hlr4bcm8Uc0wiE3b+7hWETWtCbuGic7Cpg/GcAtmnEzPHOm1JNfD0LV5B3w2q
+rLM+1ymV2NiUKdwPw8+/4sx8MLNgBqdHiRwvMFme5SIYOk/MGrGYsaDKQyKik33O
+cecsWKtgAjnHoJlC6SCPLel7iNfwyLN8W2T/F8oRWMfq9hvuYsKRvdyUvArybjF9
+X6ita1p3T437e+i3ZJ/rFiadP1BUdTvwPBkvlcaNJ0ddEdjLZsBA2kIxIJJ16WC7
+5kZn4IKmXicB18N3kGy0QJNBtqKbp34lyvvs5soqO6ANbkILi70xpS+eN+S0H9jS
+hL60Q4ptgmnHQb2+QZnWDmUpcfL4ob8+9ngtU0dVUMw0gu27DrQLPouJBPggHxz7
+MFbsMiTuZAIzYCUh5B35PHB+JhRsmvwI730PFLWdjtmlkpPz3mCyNdebIZouJQ5Q
+KhsE5bx1XRGwNPl0l5u5jOc9u0gyDG8K00ZSZfnejFutlNojJZRsoRKAYGAv6is/
+4dchxABetEUBnrd3WJ+GPFB6DTsPEEQMxLUqqaMK6r2ecIDAbY0=
+=o6nY
 -----END PGP SIGNATURE-----
