@@ -242,9 +242,11 @@ jobs:
           for component in nightly release ; do
             for codename in buster bullseye bookworm trixie focal jammy noble ; do
               echo Add accel-ppp for distro codename=${codename} component=$component;
-              reprepro -V --section net --component $component --priority 0 includedeb ${codename} incoming/$component-deb-accel-ppp-${codename}/*/*.deb;
+              reprepro -V --section net --component $component --priority 0 includedeb ${codename}
+                incoming/$component-deb-accel-ppp-${codename}/*/*.deb;
               echo Add drivers for distro codename=${codename} component=$component;
-              reprepro -V --section net --component $component --priority 0 includedeb ${codename} incoming/$component-deb-accel-ppp-${codename}/*/*/*.deb;
+              reprepro -V --section net --component $component --priority 0 includedeb ${codename}
+                incoming/$component-deb-accel-ppp-${codename}/*/*/*.deb || echo TODO;
             done
           done
 
